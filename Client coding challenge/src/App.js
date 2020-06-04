@@ -8,22 +8,32 @@ class App extends React.Component{
   constructor( props ){
     super( props );
     this.state = {
-      /*
-        Your code goes here
-      */
+      title : this.title,
+	  author : this.autor,
+	  thumbnail : this.thumbnail,
+	  textSnipet : this.textSnipet
     }
   }
 
-  /* 
-    Your code goes here
-  */
-
+	let url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + `${BookForm.input}`
+	fetch(url, "GET") {
+		.then( responseJSON => {
+			let book = {
+				title : responseJSON.volumeInfo.title,
+				author : responseJSON.volumeInfo.authors,
+				thumbnail : responseJSON.imageLinks.thumbnail,
+				textSnipet : responseJSON.retailPrice.amount
+			}
+		})
+		.catch( err => { 
+			throw new Error( err );
+		});
+	}
+	
   render(){
     return(
       <div>
-        {/* 
-          Your code goes here
-        */}
+        {book}
       </div>
     )
   }

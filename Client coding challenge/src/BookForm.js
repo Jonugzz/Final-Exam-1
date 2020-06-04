@@ -3,9 +3,15 @@ import React from 'react';
 function BookForm( props ){
     return(
         <div>
-            {/*
-                Your code goes here
-            */}
+            <form>
+				<section>
+					<label> Book name: </label>
+					<input type="text"> </input>
+					<button type="submit">
+						Search
+					</button>
+				</section>
+			</form>
         </div>
     );
 }

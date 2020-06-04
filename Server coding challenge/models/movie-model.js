@@ -20,7 +20,7 @@ const moviesSchema = mongoose.Schema({
     },
     actors : [{
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'authors',
+        ref : 'actors',
         required : true
     }]
 });
@@ -37,10 +37,27 @@ const Movies = {
                 .catch( err => {
                     throw new Error( err );
                 });
-    }
-    /*
-        Your code goes here
-    */
+    },
+	getMovieByID : function( id ){
+		return moviesCollection
+				.findOne( {id} )
+				.then( movie => {
+					return movie;
+				})
+				.catch( err => {
+					throw new Error( err );
+				});
+	},
+	addActorToMovieList : function( actor ){
+		return moviesCollection
+				.add( actor )
+				.then( addedAct => {
+					return addedAct;
+				})
+				.catch( err => {
+					throw new Error(err);
+				});
+	}
 }
 
 module.exports = {
